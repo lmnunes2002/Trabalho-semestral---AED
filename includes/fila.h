@@ -11,7 +11,7 @@ typedef struct{
 } tp_fila;
 
 // Utiliza uma posição vazia de sacrificio.
-void incializa_filha(tp_fila *f){
+void incializa_fila(tp_fila *f){
     f->ini = f->fim = MAX - 1;
 }
 
