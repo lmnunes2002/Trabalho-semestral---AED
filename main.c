@@ -10,6 +10,7 @@ int main(void){
 
     tp_jogador j1 = {1, 0, "Alice", 0};
     tp_jogador j2 = {2, 0, "Bob", 0};
+    tp_jogador j3 = {3, 0, "Joe", 0};
 
     enfila(&f, j1);
     enfila(&f, j2);
