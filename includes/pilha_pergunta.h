@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include "pergunta.h"
 
-typedef tp_pergunta tp_item;
+typedef tp_pergunta tp_item_pilha;
 
 typedef struct{
     int topo;
-    tp_item item[MAX];
+    tp_item_pilha item[MAX];
 } tp_pilha;
 
 void inicializa_pilha(tp_pilha *p){
@@ -29,7 +29,7 @@ int pilha_cheia(tp_pilha *p){
 
 // Ações da pilha com robustez de verificação.
 // Diferente do pop, não interessa retornar o elemento da função.
-int push(tp_pilha *p, tp_item e){
+int push(tp_pilha *p, tp_item_pilha e){
     if (pilha_cheia(p)) return 0;
     p->topo++;
     p->item[p->topo] = e;
@@ -37,7 +37,7 @@ int push(tp_pilha *p, tp_item e){
 }
 
 // Recebe um ponteiro para retornar o elemento desempilhado.
-int pop(tp_pilha *p, tp_item *e){
+int pop(tp_pilha *p, tp_item_pilha *e){
     if (pilha_vazia(p)) return 0;
     *e = p->item[p->topo];
     p->topo--;
@@ -45,7 +45,7 @@ int pop(tp_pilha *p, tp_item *e){
 }
 
 // Olha o elemento no topo da pilha.
-int elemento_topo(tp_pilha *p, tp_item *e){
+int elemento_topo(tp_pilha *p, tp_item_pilha *e){
     if (pilha_vazia(p)) return 0;
     *e = p->item[p->topo];
     return 1;
@@ -58,11 +58,11 @@ int altura_pilha(tp_pilha *p){
 
 // Não recebe ponteiro, realiza ações na copia.
 void print_pilha(tp_pilha p){
-    tp_item e;
+    tp_item_pilha e;
     printf("\n");
     while(!pilha_vazia(&p)){
         pop(&p, &e);
-        printf("%d\n", e);
+        printf("ID: %d | %s\n", e.id, e.pergunta);
     }
 }
 

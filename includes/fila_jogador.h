@@ -5,14 +5,14 @@
 #include "jogador.h"
 
 // Apelido tp_item para ser usado na fila
-typedef tp_jogador tp_item;
+typedef tp_jogador tp_item_fila;
 
 // MAX = 4 jogadores + 1 posição de sacrifício
 #define MAX 5 
 
 typedef struct {
     int ini, fim;
-    tp_item item[MAX]; 
+    tp_item_fila item[MAX]; 
 } tp_fila;
 
 // Inicializa a fila
@@ -34,7 +34,7 @@ int fila_cheia(tp_fila *f) {
 }
 
 // Enfileirar (aceita tp_item, que é um jogador)
-int enfila(tp_fila *f, tp_item e) {
+int enfila(tp_fila *f, tp_item_fila e) {
     if (fila_cheia(f)) return 0;
     f->fim = proximo(f->fim);
     f->item[f->fim] = e;
@@ -42,7 +42,7 @@ int enfila(tp_fila *f, tp_item e) {
 }
 
 // Desenfileirar (retira um tp_item)
-int desenfila(tp_fila *f, tp_item *e) {
+int desenfila(tp_fila *f, tp_item_fila *e) {
     if (fila_vazia(f)) return 0;
     f->ini = proximo(f->ini);
     *e = f->item[f->ini];
@@ -51,7 +51,7 @@ int desenfila(tp_fila *f, tp_item *e) {
 
 // Exibe os jogadores (acessando os campos da struct via tp_item)
 void print_fila(tp_fila f) {
-    tp_item e;
+    tp_item_fila e;
     printf("\n--- Fila de Jogadores ---\n");
     while (desenfila(&f, &e)) {
         printf("ID: %d | Nome: %s\n", e.id, e.nome);
