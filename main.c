@@ -2,26 +2,23 @@
 #include <stdlib.h>
 #include <time.h>
 #include "includes/fila_jogador.h"
+#include "includes/jogador.h"
+#include "includes/mundo.h"
+
 
 void desenhar_spider();
 
 int main(void){
+    tp_jogador j1, j2, j3, j4;
+    tp_jogador jogadores[4] = {j1, j2, j3, j4};
     srand(time(NULL));
     tp_fila f;
+    char teste[30];
     inicializa_fila(&f);
 
-    tp_jogador j1 = {1, 0, "Alice", 0};
-    tp_jogador j2 = {2, 0, "Bob", 0};
-
-    enfila(&f, j1);
-    enfila(&f, j2);
-
-    for(int i = 0; i < 5; i++) {
-        printf("\n--- RODADA %d ---", i + 1);
-        vez_jogador(&f); 
-    }
-
-    printf("\n\nTeste concluido com sucesso!");
+    printf("Tamanho da string teste: %d\n", strlen(teste));
+    init_mundo(&jogadores);
+    apresentar(jogadores);
     
     desenhar_spider();
     
