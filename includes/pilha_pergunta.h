@@ -1,9 +1,11 @@
 #ifndef PILHA_H
 #define PILHA_H
-#include <stdio.h>
-#define MAX 100
+#define MAX 5
 
-typedef int tp_item;
+#include <stdio.h>
+#include "pergunta.h"
+
+typedef tp_pergunta tp_item;
 
 typedef struct{
     int topo;
