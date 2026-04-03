@@ -1,6 +1,5 @@
-#include <time.h>
-#include <stdlib.h>
-#include "fila_jogador.h"
+#ifndef JOGADOR_H
+#define JOGADOR_H
 
 typedef struct {
     int id;
@@ -13,3 +12,5 @@ void init_jogador (tp_jogador *jogador){
     jogador->pos = 0;
     jogador->pontuacao = 0;
 }
+
+#endif
