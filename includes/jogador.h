@@ -25,9 +25,11 @@ void mudar_nome(tp_jogador *jogador, char novo_nome[]){
     strcpy(jogador->nome, novo_nome);
 }
 
-void definir_ordem(tp_fila *fila, tp_jogador *jogador, int quantidade){
-    for(int i = 0; i < quantidade; i++){
-        
+//mostra os jogadores que foram registrados
+void apresentar_nome(tp_jogador *jogador){
+    for(int i = 0; jogador[i].id == 0; i++){
+        if(jogador[i].id == 0) printf("Nome do jogador %d: %s\n", i + 1, jogador[i].nome);
     }
 }
+
 #endif

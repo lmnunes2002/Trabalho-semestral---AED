@@ -3,18 +3,29 @@
 #include <stdio.h>
 #include "jogador.h"
 
-//função que cadastra os jogadores, dando início ao jogo
-void init_mundo(tp_jogador *jogadores[], tp_fila *jogadas){
+//função que cadastra os jogadores, dando início ao jogo, recebendo o vetor na main como parâmetro
+void init_mundo(tp_jogador *jogadores){
+    //Quantidade de jogadores
     int n;
-    printf("Registre a quantidade de jogadores (entre 2 e 4): ");
-    scanf("%d", &n);
+
+    /*Laço para registrar os jogadores, tentei deixá-lo robusto, diferente do último commit, focarei mais em dar robustez
+    ao invés de continuar criando mais funções*/
+    do{
+        printf("Digite a quantidade de jogadores (entre 2 e 4): ");
+    }while(scanf("%d", &n) != 1  || n < 2 || n > 4);
+
+    //Laço para registrar o nome dos jogadores a cada variável
     for(int i = 0; i < n; i++){
         //Nome dentro do for para que a cada laço, a string seja limpada
-        char nome[30];
+        char novo_nome[30] = "";
+
+        //Função que inicializa cada jogador durante o laço
         init_jogador(&jogadores[i]);
+
+        //Registro dos nomes dos jogadores
         printf("Digite um nome de até 30 caracteres para o jogador %d: ", i + 1);
-        scanf(" %[^\n]", nome);
-        mudar_nome(&jogadores[i], nome);
+        scanf(" %[^\n]", novo_nome);
+        strcpy(jogadores[i].nome, novo_nome);
     }
 
 }

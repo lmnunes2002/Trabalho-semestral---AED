@@ -10,17 +10,22 @@ void desenhar_spider();
 
 int main(void){
     tp_jogador j1, j2, j3, j4;
+    //Vetor para facilitar a manipulação dos jogadores em funções fora da main
     tp_jogador jogadores[4] = {j1, j2, j3, j4};
-    tp_fila jogadas;
-    incializa_fila(&jogadas);
-    srand(time(NULL));
-    tp_fila f;
-    char teste[30];
-    inicializa_fila(&f);
 
-    printf("Tamanho da string teste: %d\n", strlen(teste));
-    init_mundo(&jogadores);
+    //Fila que vai armazenar os jogadores na ordem em que jogarão
+    tp_fila jogadas;
+    inicializa_fila(&jogadas);
+    srand(time(NULL));
+
+    //Função que inicializa os jogadores
+    init_mundo(jogadores);
     
+    //Função para apresentar os jogadores e seus nomes
+    apresentar_nome(jogadores);
+
+    /*Apenas uma função qualquer para experimentar o uso de "sprites" durante o jogo, meramente experimental.
+    Ao rodar o código, ou até mesmo antes, recomendo que expanda o terminal o máximo possível para maior proveito*/
     desenhar_spider();
     
     return 0;
