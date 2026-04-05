@@ -14,10 +14,10 @@ typedef struct {
 }tp_jogador;
 
 //inicializa os jogadores, sendo obviamente, suas posições: iniciais, e com 0 pontos
-void init_jogador(tp_jogador *jogador, int cod){
+void init_jogador(tp_jogador *jogador){
     jogador->pos = 0;
     jogador->pontuacao = 0;
-    jogador->id = cod;
+    jogador->id = 0;
 }
 
 //função para alterar/adicionar um nome ao jogador
@@ -25,10 +25,9 @@ void mudar_nome(tp_jogador *jogador, char novo_nome[]){
     strcpy(jogador->nome, novo_nome);
 }
 
-void apresentar(tp_jogador *jogadores[]){
-    for(int i = 0; i < 4; i++){
-        if(strlen(jogadores[i]->nome) == 0) break;
-        else printf("Jogador %d: %s\n", i + 1, jogadores[i]->nome);
+void definir_ordem(tp_fila *fila, tp_jogador *jogador, int quantidade){
+    for(int i = 0; i < quantidade; i++){
+        
     }
 }
 #endif

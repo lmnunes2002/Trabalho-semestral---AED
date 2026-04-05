@@ -11,6 +11,8 @@ void desenhar_spider();
 int main(void){
     tp_jogador j1, j2, j3, j4;
     tp_jogador jogadores[4] = {j1, j2, j3, j4};
+    tp_fila jogadas;
+    incializa_fila(&jogadas);
     srand(time(NULL));
     tp_fila f;
     char teste[30];
@@ -18,7 +20,6 @@ int main(void){
 
     printf("Tamanho da string teste: %d\n", strlen(teste));
     init_mundo(&jogadores);
-    apresentar(jogadores);
     
     desenhar_spider();
     
