@@ -1,6 +1,6 @@
 #ifndef PILHA_H
 #define PILHA_H
-#define MAX 5
+#define MAX_PILHA 10
 
 #include <stdio.h>
 #include "pergunta.h"
@@ -9,7 +9,7 @@ typedef tp_pergunta tp_item_pilha;
 
 typedef struct{
     int topo;
-    tp_item_pilha item[MAX];
+    tp_item_pilha item[MAX_PILHA];
 } tp_pilha;
 
 void inicializa_pilha(tp_pilha *p){
@@ -23,7 +23,7 @@ int pilha_vazia(tp_pilha *p){
 }
 
 int pilha_cheia(tp_pilha *p){
-    if (p->topo == MAX - 1) return 1;
+    if (p->topo == MAX_PILHA - 1) return 1;
     return 0;
 }
 
@@ -63,6 +63,26 @@ void print_pilha(tp_pilha p){
     while(!pilha_vazia(&p)){
         pop(&p, &e);
         printf("ID: %d | %s\n", e.id, e.pergunta);
+    }
+}
+
+// Embaralha os vetores de perguntas, em seguinda empilha
+void embaralha_pilha(tp_pilha *p, tp_pergunta banco_perguntas[], int total_perguntas){
+    tp_item_pilha temp;
+
+    // Algoritmo de Fisher-Yates moderno.
+    for (int i = total_perguntas - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+
+        // Utiliza uma variavel auxiliar para trocar as perguntas de lugar.
+        tp_pergunta temp = banco_perguntas[i];
+        banco_perguntas[i] = banco_perguntas[j];
+        banco_perguntas[j] = temp;
+    }
+
+    // Empilha as perguntas embaralhadas na pilha.
+    for (int i = 0; i < total_perguntas; i++) {
+        push(p, banco_perguntas[i]);
     }
 }
 

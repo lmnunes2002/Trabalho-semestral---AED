@@ -8,16 +8,16 @@
 typedef tp_jogador tp_item_fila;
 
 // MAX = 4 jogadores + 1 posição de sacrifício
-#define MAX 5 
+#define MAX_FILA 5 
 
 typedef struct {
     int ini, fim;
-    tp_item_fila item[MAX]; 
+    tp_item_fila item[MAX_FILA]; 
 } tp_fila;
 
 // Inicializa a fila
 void inicializa_fila(tp_fila *f) {
-    f->ini = f->fim = MAX - 1;
+    f->ini = f->fim = MAX_FILA - 1;
 }
 
 int fila_vazia(tp_fila *f) {
@@ -25,7 +25,7 @@ int fila_vazia(tp_fila *f) {
 }
 
 int proximo(int pos) {
-    if (pos == MAX - 1) return 0;
+    if (pos == MAX_FILA - 1) return 0;
     return ++pos;
 }
 

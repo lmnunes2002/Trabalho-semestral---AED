@@ -12,7 +12,7 @@ int main(void){
     inicializa_pilha(&p);
     inicializa_fila(&f);
 
-    int total_perguntas = 5;
+    int total_perguntas = 6;
     tp_pergunta banco_perguntas[total_perguntas];
 
     // --- PERGUNTA 1 ---
@@ -45,19 +45,15 @@ int main(void){
     init_opcoes(&banco_perguntas[4], ops5);
     banco_perguntas[4].id = 5;
 
+    // --- PERGUNTA 6 ---
+    char *ops6[] = {"While", "For", "Do-While"};
+    init_pergunta(&banco_perguntas[5], "Qual estrutura de repeticao executa o bloco de codigo pelo menos uma vez?", 2, 'C');
+    init_opcoes(&banco_perguntas[5], ops6);
+    banco_perguntas[5].id = 6;
+
     // Embaralha as perguntas.
     srand(time(NULL));
-    for (int i = total_perguntas - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        tp_pergunta temp = banco_perguntas[i];
-        banco_perguntas[i] = banco_perguntas[j];
-        banco_perguntas[j] = temp;
-    }
-
-    // Empilha as perguntas embaralhadas na pilha.
-    for (int i = 0; i < 5; i++) {
-        push(&p, banco_perguntas[i]);
-    }
+    embaralha_pilha(&p, banco_perguntas, total_perguntas);
 
     printf("Teste de desempilhamento:\n");
     tp_pergunta p_teste;
@@ -67,16 +63,17 @@ int main(void){
         printf("ID: %d | Pergunta: %s\n", p_teste.id, p_teste.pergunta);
     }
 
-    tp_jogador j1 = {1, 0, "Alice", 0};
-    tp_jogador j2 = {2, 0, "Bob", 0};
+    // Comentado por enquanto
+    // tp_jogador j1 = {1, 0, "Alice", 0};
+    // tp_jogador j2 = {2, 0, "Bob", 0};
 
-    enfila(&f, j1);
-    enfila(&f, j2);
+    // enfila(&f, j1);
+    // enfila(&f, j2);
 
-    for(int i = 0; i < 5; i++) {
-        printf("\n--- RODADA %d ---", i + 1);
-        vez_jogador(&f); 
-    }
+    // for(int i = 0; i < 5; i++) {
+    //     printf("\n--- RODADA %d ---", i + 1);
+    //     vez_jogador(&f); 
+    // }
 
     printf("\n\nTeste concluido com sucesso!");
     return 0;
