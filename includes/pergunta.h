@@ -2,7 +2,7 @@
 #define PERGUNTA_H
 
 #define MAX_TEXTO 150
-#define QTD_OPCOES 3
+#define QTD_OPCOES 4
 
 #include <string.h>
 
