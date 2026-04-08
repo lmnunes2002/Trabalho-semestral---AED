@@ -2,6 +2,9 @@
 #define PILHA_H
 #define MAX_PILHA 10
 
+// Define o tamanho fixo do banco de perguntas para facilitar o uso de arrays
+#define TOTAL_PERGUNTAS 6
+
 #include <stdio.h>
 #include "pergunta.h"
 
@@ -65,6 +68,9 @@ void print_pilha(tp_pilha p){
         printf("ID: %d | %s\n", e.id, e.pergunta);
     }
 }
+
+// Protótipo da função que preenche o array de perguntas
+void inicializar_banco(tp_pergunta banco_perguntas[]);
 
 // Embaralha os vetores de perguntas, em seguinda empilha
 void embaralha_pilha(tp_pilha *p, tp_pergunta banco_perguntas[], int total_perguntas){
