@@ -7,8 +7,13 @@
 // Apelido tp_item para ser usado na fila
 typedef tp_jogador tp_item;
 
+<<<<<<< Updated upstream
 // MAX = 4 jogadores + 1 posiÃ§Ã£o de sacrifÃ­cio
 #define MAX 5 
+=======
+// MAX = 4 jogadores + 1 posição de sacrifício
+#define MAX_FILA 5 
+>>>>>>> Stashed changes
 
 typedef struct {
     int ini, fim;
@@ -58,7 +63,7 @@ void print_fila(tp_fila f) {
     }
 }
 
-// FunÃ§Ãµes do jogador (provavel refatoracao).
+// Funções do jogador (provavel refatoracao).
 // A funcao recebe uma fila de jogadores preenchida.
 void vez_jogador(tp_fila *f){
     tp_jogador jogador_atual;
