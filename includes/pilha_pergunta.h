@@ -105,7 +105,7 @@ void imprime_pilha(tp_pilha *p) {
     tp_no_pilha *aux = p->topo;
     printf("\nPerguntas na Pilha: \n");
     while (aux != NULL) {
-        printf("ID: %d | %s\n", aux->pergunta.id, aux->pergunta.pergunta); 
+        printf("ID: %d | %s\n", aux->pergunta.id, aux->pergunta.texto); 
         aux = aux->prox; 
     }
 }

@@ -7,7 +7,7 @@
 #include <string.h>
 
 typedef struct{
-    char pergunta[MAX_TEXTO];
+    char texto[MAX_TEXTO];
     // Matriz 2d, usado como um lista de opcoes.
     char opcoes[QTD_OPCOES][MAX_TEXTO];
     char resposta_certa;
@@ -18,7 +18,7 @@ typedef struct{
 
 // Inicializa as perguntas com os parametros do TAD.
 void init_pergunta(tp_pergunta *p, char *txt, int dific, char resp){
-    strcpy(p->pergunta, txt);
+    strcpy(p->texto, txt);
     p->resposta_certa = resp;
     p->dificuldade = dific; 
 }

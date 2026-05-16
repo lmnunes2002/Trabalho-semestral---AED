@@ -37,3 +37,28 @@ void inicializar_banco(tp_pergunta banco_perguntas[]) {
     init_opcoes(&banco_perguntas[5], ops6);
     banco_perguntas[5].id = 6;
 }
+
+int realizar_pergunta(tp_item_pilha pergunta){
+    printf("\n PERGUNTA DE NÍVEL %d: %s\n", pergunta.dificuldade, pergunta.texto);
+
+    printf("A) %s\n", pergunta.opcoes[0]);
+    printf("B) %s\n", pergunta.opcoes[1]);
+    printf("C) %s\n", pergunta.opcoes[2]);
+    printf("D) %s\n", pergunta.opcoes[3]);
+
+    char resp;
+    printf("\n Sua resposta: ");
+    scanf(" %c", &resp);
+
+    if (resp >= 'a' && resp <= 'z') {
+        resp -= 32; // Converte para maiúscula
+    }
+
+    if (resp == pergunta.resposta_certa) {
+        printf("\nCORRETO! Você avançará!\n");
+        return 1; 
+    } else {
+        printf("\nERRADO! A resposta certa era a alternativa %c.\n", pergunta.resposta_certa);
+        return 0;
+    }
+}
