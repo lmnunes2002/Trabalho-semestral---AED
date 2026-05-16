@@ -1,72 +1,120 @@
 #ifndef PILHA_H
 #define PILHA_H
-#define MAX_PILHA 10
-
-// Define o tamanho fixo do banco de perguntas para facilitar o uso de arrays
-#define TOTAL_PERGUNTAS 6
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "pergunta.h"
 
 typedef tp_pergunta tp_item_pilha;
 
+typedef struct tp_no_pilha{
+    tp_item_pilha pergunta;
+    struct tp_no_pilha *prox;
+} tp_no_pilha;
+
 typedef struct{
-    int topo;
-    tp_item_pilha item[MAX_PILHA];
+    tp_no_pilha *topo;
 } tp_pilha;
 
-void inicializa_pilha(tp_pilha *p){
-    p->topo = -1;
+tp_pilha *inicializa_pilha(){
+    tp_pilha *p=(tp_pilha*) malloc(sizeof(tp_pilha));
+    p->topo = NULL;
+    return p;
 }
 
 // Funções de verificação, importantes para o uso da pilha.
 int pilha_vazia(tp_pilha *p){
-    if (p->topo == -1) return 1;
+    if (p->topo == NULL) return 1;
     return 0;
 }
 
+tp_no_pilha* aloca(){
+    tp_no_pilha *pt;
+    pt=(tp_no_pilha*) malloc (sizeof(tp_no_pilha));
+    return pt;
+}
+
 int pilha_cheia(tp_pilha *p){
-    if (p->topo == MAX_PILHA - 1) return 1;
+    tp_no_pilha *teste;
+    teste=(tp_no_pilha*) malloc (sizeof(tp_no_pilha));
+    
+    // Não conseguiu alocar memória.
+    if (teste == NULL){
+        return 1;
+    }
+    
+    // Desaloca o nó de teste;
+    free(teste);
     return 0;
 }
 
 // Ações da pilha com robustez de verificação.
 // Diferente do pop, não interessa retornar o elemento da função.
-int push(tp_pilha *p, tp_item_pilha e){
-    if (pilha_cheia(p)) return 0;
-    p->topo++;
-    p->item[p->topo] = e;
+int push(tp_pilha *p, tp_item_pilha e) { 
+    if (pilha_cheia(p)) return 0; 
+    
+    tp_no_pilha *novo_no = aloca();
+    if (novo_no == NULL) return 0; 
+    
+    novo_no->pergunta = e; 
+    novo_no->prox = p->topo; 
+    p->topo = novo_no; 
+    
     return 1;
 }
 
 // Recebe um ponteiro para retornar o elemento desempilhado.
-int pop(tp_pilha *p, tp_item_pilha *e){
+int pop(tp_pilha *p, tp_item_pilha *e){ 
     if (pilha_vazia(p)) return 0;
-    *e = p->item[p->topo];
-    p->topo--;
+    
+    tp_no_pilha *aux; 
+    
+    *e = p->topo->pergunta; 
+    aux = p->topo;
+    p->topo = p->topo->prox;
+    
+    free(aux);
+    aux = NULL; 
+    
     return 1;
 }
 
-// Olha o elemento no topo da pilha.
-int elemento_topo(tp_pilha *p, tp_item_pilha *e){
-    if (pilha_vazia(p)) return 0;
-    *e = p->item[p->topo];
-    return 1;
+int elemento_topo(tp_pilha *p, tp_item_pilha *e) {
+    if (pilha_vazia(p)) return 0; 
+    *e = p->topo->pergunta;
+    return 1; 
 }
 
-// Quantidade de elementos empilhados.
 int altura_pilha(tp_pilha *p){
-    return p->topo+1;
+    tp_no_pilha *aux = p->topo;
+    int cont = 0;
+    
+    while(aux != NULL){
+        aux = aux->prox;
+        cont++;
+    }
+    return cont;
 }
 
-// Não recebe ponteiro, realiza ações na copia.
-void print_pilha(tp_pilha p){
-    tp_item_pilha e;
-    printf("\n");
-    while(!pilha_vazia(&p)){
-        pop(&p, &e);
-        printf("ID: %d | %s\n", e.id, e.pergunta);
+void imprime_pilha(tp_pilha *p) {
+    if (pilha_vazia(p)) {
+        printf("Pilha vazia!\n");
+        return;
     }
+
+    tp_no_pilha *aux = p->topo;
+    printf("\nPerguntas na Pilha: \n");
+    while (aux != NULL) {
+        printf("ID: %d | %s\n", aux->pergunta.id, aux->pergunta.pergunta); 
+        aux = aux->prox; 
+    }
+}
+
+void destroi_pilha(tp_pilha *p) {
+    tp_item_pilha e;
+    while (!pilha_vazia(p))
+        pop(p, &e);
+    free(p);
 }
 
 // Protótipo da função que preenche o array de perguntas
