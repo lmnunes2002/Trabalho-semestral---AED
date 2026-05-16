@@ -1,6 +1,7 @@
-#include <time.h>
-#include <stdlib.h>
-#include "fila_jogador.h"
+#ifndef JOGADOR_H
+#define JOGADOR_H
+
+#include <string.h>
 
 typedef struct {
     int id;
@@ -9,7 +10,13 @@ typedef struct {
     int pontuacao;
 } tp_jogador;
 
-void init_jogador (tp_jogador *jogador){
+// Inicializa jogador com pos e pontuacao 0
+void init_jogador (tp_jogador *jogador, char *txt){
     jogador->pos = 0;
     jogador->pontuacao = 0;
+
+    // Copia a string txt para a struct jogador.
+    strcpy(jogador->nome, txt);
 }
+
+#endif
