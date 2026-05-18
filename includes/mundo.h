@@ -1,33 +1,46 @@
 #ifndef MUNDO_H
 #define MUNDO_H
+
 #include <stdio.h>
 #include "jogador.h"
+#include "fila_jogador.h"
+#include "lista_tabuleiro.h"
 
-//função que cadastra os jogadores, dando início ao jogo, recebendo o vetor na main como parâmetro
-void init_mundo(tp_jogador *jogadores){
-    //Quantidade de jogadores
-    int n;
+void cadastrar_jogadores(tp_fila *jogadores){
+    printf("\n--- CADASTRANDO OS JOGADORES ---\n");
 
-    /*Laço para registrar os jogadores, tentei deixá-lo robusto, diferente do último commit, focarei mais em dar robustez
-    ao invés de continuar criando mais funções*/
-    do{
-        printf("Digite a quantidade de jogadores (entre 2 e 4): ");
-    }while(scanf("%d", &n) != 1  || n < 2 || n > 4);
-
-    //Laço para registrar o nome dos jogadores a cada variável
-    for(int i = 0; i < n; i++){
-        //Nome dentro do for para que a cada laço, a string seja limpada
-        char novo_nome[30] = "";
-
-        //Função que inicializa cada jogador durante o laço
-        init_jogador(&jogadores[i]);
-
-        //Registro dos nomes dos jogadores
-        printf("Digite um nome de até 30 caracteres para o jogador %d: ", i + 1);
-        scanf(" %[^\n]", novo_nome);
-        strcpy(jogadores[i].nome, novo_nome);
+    // 3. CADASTRO DE JOGADORES 100% DINÂMICO
+    printf("--- CONFIGURAÇÃO DO JOGO ---\n");
+    
+    int num_jogadores = 0;
+    while (num_jogadores < 2) {
+        printf("Digite o número de jogadores: ");
+        scanf("%d", &num_jogadores);
+        
+        if (num_jogadores < 2) {
+            printf("Ops! O jogo precisa de pelo menos 2 participantes.\n\n");
+        }
     }
+    
+    int i = 0;
+    while (i < num_jogadores) {
+        tp_jogador novo_jogador;
+        char nome_buffer[30];
 
+        printf("Digite o nome do Jogador %d: ", i + 1);
+        scanf(" %29s", nome_buffer); // O espaço limpa buffers indesejados
+
+        // Usa a sua função original de inicialização
+        init_jogador(&novo_jogador, nome_buffer);
+        
+        // Define o ID dinamicamente baseado no contador do laço
+        novo_jogador.id = i + 1; 
+
+        // Enfila o jogador imediatamente
+        enfila(jogadores, novo_jogador);
+        
+        i++;
+    }
 }
 
 #endif
