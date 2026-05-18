@@ -1,4 +1,4 @@
-# Trabalho-semestral--- Ludo
+# Algoritmos e Estruturas de Dados- Ludo
 Para a entrega deste trabalho, foi desenvolvido, pelo grupo Guerreiros C, um programa que tem por objetivo simular um jogo ludo.
 # Grupo: 
   - Andrei Brasil
