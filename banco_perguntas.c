@@ -45,7 +45,7 @@ void inicializar_banco(tp_pergunta banco_perguntas[]) {
 
     
     //Perguntas 8:
-    char *ops8[] = {"Um valor inteiro", "Si mesma", "Nulo", "Vetor auxiliar"};
+    char *ops8[] = {"Um valor inteiro", "Seu proprio endereco", "Nulo", "Vetor auxiliar"};
     init_pergunta(&banco_perguntas[7], "Uma lista simplesmente encadeada para ser devidamente inicializada deve apontar para:", 1, 'C');
     init_opcoes(&banco_perguntas[7], ops8);
     banco_perguntas[7].id = 8;
