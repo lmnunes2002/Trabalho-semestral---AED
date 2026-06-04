@@ -67,7 +67,7 @@ void inicializar_banco(tp_pergunta banco_perguntas[]) {
     
     //Perguntas 11:
     char *ops11[] = {"O(log(n)), O(1), O(log(n))", "O(n*log(n)), O(1), O(log(n))", "O(n²), O(n*log(n)), O(log(n))", "O(n*x), O(n) e O(log(n))"};
-    init_pergunta(&banco_perguntas[10], "A busca binaria, um famoso algoritmo que divide um vetor em subvetores, costuma ter quais complexidades algoritmicas em seus pior, melhor e médio caso, respectivamente?", 2, 'A');
+    init_pergunta(&banco_perguntas[10], "A busca binaria, um famoso algoritmo que divide um vetor em subvetores, costuma ter quais complexidades algoritmicas em seus pior, melhor e medio caso:", 2, 'A');
     init_opcoes(&banco_perguntas[10], ops11);
     banco_perguntas[10].id = 11;
     
