@@ -2,44 +2,44 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "includes/fila_jogador.h"
-#include "banco_perguntas.c"
+#include "includes/mundo.h"
 
-int main(void){
+#define TOTAL_PERGUNTAS 12
+
+// Protótipos para evitar warnings de compilação
+//void inicializar_banco(tp_pergunta banco_perguntas[]);
+//int realizar_pergunta(tp_item_pilha pergunta);
+
+int main(void) {
     srand(time(NULL));
-    tp_fila f;
-    tp_pilha p;
 
-    inicializa_pilha(&p);
-    inicializa_fila(&f);
+    // 1. Inicialização das Estruturas Dinâmicas
+    tp_pilha *pilha_perguntas = inicializa_pilha();
+    tp_fila *fila_jogadores = inicializa_fila();
+    tp_listade *tabuleiro = inicializa_listade();
 
-    // Inicializa o banco de perguntas e armazena em um array para facilitar.
-    tp_pergunta banco_perguntas[TOTAL_PERGUNTAS];
-    inicializar_banco(banco_perguntas);
+    // 2. Preparação das Perguntas
+    tp_pergunta banco[TOTAL_PERGUNTAS];
+    inicializar_banco(banco);
+    embaralha_pilha(pilha_perguntas, banco, TOTAL_PERGUNTAS);
 
-    // Embaralha as perguntas.
-    embaralha_pilha(&p, banco_perguntas, TOTAL_PERGUNTAS);
+    // 3. CADASTRO DE JOGADORES 100% DINÂMICO
+    cadastrar_jogadores(fila_jogadores);
 
-    printf("Teste de desempilhamento:\n");
-    tp_pergunta p_teste;
+    // Limpa o buffer do teclado para o getchar() do jogo funcionar perfeitamente
+    getchar(); 
 
-    while (!pilha_vazia(&p)) {
-        pop(&p, &p_teste);
-        printf("ID: %d | Pergunta: %s\n", p_teste.id, p_teste.pergunta);
-    }
+    // Ponteiro para monitorar a posição física no tabuleiro
+    tp_no *pos_atual = NULL;
 
-    // Comentado por enquanto
-    // tp_jogador j1 = {1, 0, "Alice", 0};
-    // tp_jogador j2 = {2, 0, "Bob", 0};
+    hello_world(pilha_perguntas, fila_jogadores, tabuleiro, pos_atual);
 
-    // enfila(&f, j1);
-    // enfila(&f, j2);
+    // 6. Limpeza Geral de Memória Dinâmica
+    printf("\n\n--- LIMPANDO MEMÓRIA E ENCERRANDO ---");
+    destroi_listad(tabuleiro);
+    destroi_pilha(pilha_perguntas);
+    destroi_fila(fila_jogadores);
 
-    // for(int i = 0; i < 5; i++) {
-    //     printf("\n--- RODADA %d ---", i + 1);
-    //     vez_jogador(&f); 
-    // }
-
-    printf("\n\nTeste concluido com sucesso!");
+    printf("\nSistema encerrado com sucesso.\n");
     return 0;
 }
