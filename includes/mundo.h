@@ -6,6 +6,7 @@
 #include "fila_jogador.h"
 #include "pilha_pergunta.h"
 #include "lista_tabuleiro.h"
+#include "../banco_perguntas.h"
 
 void cadastrar_jogadores(tp_fila *jogadores){
     printf("\n--- CADASTRANDO OS JOGADORES ---\n");
@@ -100,6 +101,7 @@ void hello_world(tp_pilha *pilha_perguntas, tp_fila *fila_jogadores, tp_listade 
             if (pop(pilha_perguntas, &pergunta_vez)) {
                 
                 // Executa a sua função de perguntas
+
                 int acertou = realizar_pergunta(pergunta_vez);
 
                 if (acertou) {

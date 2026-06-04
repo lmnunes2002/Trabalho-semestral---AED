@@ -3,13 +3,12 @@
 #include <time.h>
 
 #include "includes/mundo.h"
-#include "banco_perguntas.c"
 
 #define TOTAL_PERGUNTAS 12
 
 // Protótipos para evitar warnings de compilação
-void inicializar_banco(tp_pergunta banco_perguntas[]);
-int realizar_pergunta(tp_item_pilha pergunta);
+//void inicializar_banco(tp_pergunta banco_perguntas[]);
+//int realizar_pergunta(tp_item_pilha pergunta);
 
 int main(void) {
     srand(time(NULL));

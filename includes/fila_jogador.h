@@ -24,7 +24,7 @@ static tp_fila *inicializa_fila() {
     return f;
 }
 
-static tp_no_fila *alocea_no_fila(){
+static tp_no_fila *aloca_no_fila(){
     tp_no_fila *pt;
     pt = (tp_no_fila*) malloc (sizeof(tp_no_fila));
     return pt;
@@ -53,7 +53,7 @@ static int fila_cheia(tp_fila *f){
 static int enfila(tp_fila *f, tp_item_fila e) {
     if (fila_cheia(f)) return 0;
     
-    tp_no_fila *novo_no = alocea_no_fila();
+    tp_no_fila *novo_no = aloca_no_fila();
     
     if (!novo_no) return 0;
 
