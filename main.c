@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "includes/mundo.h"
-
+#include "includes/registro.h"
 #define TOTAL_PERGUNTAS 12
 
 // Protótipos para evitar warnings de compilação
@@ -23,7 +23,11 @@ int main(void) {
     inicializar_banco(banco);
     embaralha_pilha(pilha_perguntas, banco, TOTAL_PERGUNTAS);
 
-    // 3. CADASTRO DE JOGADORES 100% DINÂMICO
+    // 3. Iniciar os registros do jogo
+    inicializar_registro();
+    
+
+    // 4. CADASTRO DE JOGADORES 100% DINÂMICO
     cadastrar_jogadores(fila_jogadores);
 
     // Limpa o buffer do teclado para o getchar() do jogo funcionar perfeitamente

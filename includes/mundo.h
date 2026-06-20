@@ -7,6 +7,7 @@
 #include "pilha_pergunta.h"
 #include "lista_tabuleiro.h"
 #include "../banco_perguntas.h"
+#include "registro.h"
 
 void cadastrar_jogadores(tp_fila *jogadores){
     printf("\n--- CADASTRANDO OS JOGADORES ---\n");
@@ -101,8 +102,10 @@ void hello_world(tp_pilha *pilha_perguntas, tp_fila *fila_jogadores, tp_listade 
             if (pop(pilha_perguntas, &pergunta_vez)) {
                 
                 // Executa a sua função de perguntas
-
-                int acertou = realizar_pergunta(pergunta_vez);
+                
+                char resposta_marcada;
+                int acertou = realizar_pergunta(pergunta_vez, &resposta_marcada);
+                registrar_resposta(&pergunta_vez, resposta_marcada, acertou);
 
                 if (acertou) {
                     printf("Bônus aplicado: +%d casas!\n", pos_atual->modificador_acerto);

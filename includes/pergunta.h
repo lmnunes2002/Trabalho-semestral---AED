@@ -14,13 +14,16 @@ typedef struct{
     int dificuldade;
     // Facilitar embaralhamento das perguntas.
     int id;
+    // o tema das perguntas
+    char tema[MAX_TEXTO];
 } tp_pergunta;
 
 // Inicializa as perguntas com os parametros do TAD.
-void init_pergunta(tp_pergunta *p, char *txt, int dific, char resp){
+void init_pergunta(tp_pergunta *p, char *txt, int dific, char resp, char *tema){
     strcpy(p->texto, txt);
     p->resposta_certa = resp;
     p->dificuldade = dific; 
+    strcpy(p->tema, tema);
 }
 
 // Inicializa opcoes de resposta.
